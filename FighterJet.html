@@ -84,7 +84,7 @@
             const speed = type === 1 ? 2 : 1.5; // 不同類型的敵人速度不同
             const width = type === 1 ? 40 : 50; // 不同類型的敵人大小不同
             const height = type === 1 ? 40 : 50;
-            const maxHP = type === 1 ? 10 : 1000; // 最大 HP
+            const maxHP = type === 1 ? 10 : 100; // 最大 HP
             const hp = maxHP; // 初始 HP 等於最大 HP
 
             enemies.push({ x, y: 0, width, height, speed, type, hp, maxHP });
@@ -216,19 +216,6 @@
                     
                         missile.x += (dx / distance) * missile.speed;
                         missile.y += (dy / distance) * missile.speed;
-                    
-                        // 檢測導彈是否擊中敵機
-                        // if (
-                        //     missile.x < missile.target.x + missile.target.width &&
-                        //     missile.x + missile.width > missile.target.x &&
-                        //     missile.y < missile.target.y + missile.target.height &&
-                        //     missile.y + missile.height > missile.target.y
-                        // ) {
-                        //     const targetIndex = enemies.indexOf(missile.target);
-                        //     if (targetIndex > -1) enemies.splice(targetIndex, 1);
-                        //     missiles.splice(index, 1);
-                        //     score += 10;
-                        // }
                     }
                 }
             
@@ -312,19 +299,6 @@
             
                 // 增加爆炸半徑的增量
                 explosion.radius += 15;
-            
-                // // 碰撞檢測：檢查敵人是否在爆炸範圍內
-                // enemies.forEach((enemy, enemyIndex) => {
-                //     const dx = enemy.x + enemy.width / 2 - explosion.x;
-                //     const dy = enemy.y + enemy.height / 2 - explosion.y;
-                //     const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                //     // 如果敵人在爆炸範圍內，移除敵人
-                //     if (distance < explosion.radius) {
-                //         enemies.splice(enemyIndex, 1); // 移除敵人
-                //         score += 10; // 增加分數
-                //     }
-                // });
             
                 // 如果爆炸達到最大半徑，移除爆炸效果
                 if (explosion.radius > explosion.maxRadius) {
